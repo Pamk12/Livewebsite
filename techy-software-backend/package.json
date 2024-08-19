@@ -4,7 +4,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build" ,
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -18,10 +17,5 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mongoose": "^8.5.3"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.x.x",
-    "@babel/preset-env": "^7.x.x"
   }
 }
-
