@@ -2,11 +2,12 @@
   "homepage": "https://Pamk12.github.io/Frstlivewebsite",
   "name": "techy-software-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
+    "start": "node server.js",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build" ,
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gh-pages -d dist",
+   "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",

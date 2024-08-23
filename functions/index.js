@@ -1,23 +1,26 @@
-// server.js (or server.jsx)
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+// index.jsx
+import * as functions from 'firebase-functions';
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect('mongodb://localhost:27017/contactdb', {
+const mongoURI = 'mongodb://localhost:27017/contactdb';  // Update with your MongoDB URI
+mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+}).then(() => {
+    console.log('MongoDB connected');
+}).catch(err => {
+    console.error('MongoDB connection error:', err);
 });
 
-// Define Schemas
 const contactSchema = new mongoose.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true },
@@ -57,7 +60,6 @@ app.post('/api/feedback', async (req, res) => {
     }
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Export the express app as a Cloud Function
+export const api = functions.https.onRequest(app);
+

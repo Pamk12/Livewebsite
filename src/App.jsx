@@ -1,12 +1,13 @@
 import React from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom'; 
 import Layout from '/components/Layout';
 import Home from '/components/Home';
 import AboutUs from '/components/AboutUs';
 import ProductsServices from '/components/ProductsServices';
 import ContactUs from '/components/ContactUs';
-function App  () {
-  const router = createBrowserRouter([
+
+function App() {
+  const router = createHashRouter([ 
     {
       path: '/',
       element: <Layout><Home /></Layout>,
@@ -21,17 +22,17 @@ function App  () {
     },
     {
       path: '/contactus',
-      element:<Layout><ContactUs /></Layout> , 
+      element: <Layout><ContactUs /></Layout>, 
     },
-  ])
+  ]);
+
   return (
-    <>
     <div>
-      <RouterProvider router={router}/>
-      </div>
-    </>
+      <RouterProvider router={router} />
+    </div>
   );
-};
+}
 
 export default App;
+
 
